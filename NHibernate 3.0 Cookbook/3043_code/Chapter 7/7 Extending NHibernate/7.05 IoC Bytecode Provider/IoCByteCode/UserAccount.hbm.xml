@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+    assembly="IoCByteCode"
+    namespace="IoCByteCode">
+  <class name="UserAccount">
+    <id name="Id">
+      <generator class="guid.comb" />
+    </id>
+    <natural-id>
+      <property name="EMail" not-null="true" />
+    </natural-id>
+    <property name="HashedPassword" not-null="true" />
+  </class>
+</hibernate-mapping>
+

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+    assembly="EncryptedStringExample"
+    namespace="EncryptedStringExample">
+  <typedef 
+    name="encrypted"
+    class="EncryptedStringExample.EncryptedString, EncryptedStringExample">
+    <param name="encryptor">
+      EncryptedStringExample.DESEncryptor, 
+      EncryptedStringExample
+    </param>
+    <param name="encryptionKey">12345678</param>
+  </typedef>
+  <class name="Account">
+    <id name="Id">
+      <generator class="guid.comb" />
+    </id>
+    <property name="Name" not-null="true" />
+    <property name="EMail" not-null="true" />
+    <property name="CardNumber" not-null="true" type="encrypted" />
+    <property name="ExpirationMonth" not-null="true" />
+    <property name="ExpirationYear" not-null="true" />
+    <property name="ZipCode" not-null="true" />
+  </class>
+</hibernate-mapping>
+

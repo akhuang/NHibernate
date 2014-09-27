@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+    assembly="Eg.Spatial"
+    namespace="Eg.Spatial">
+  <typedef name="Geometry"
+           class="NHibernate.Spatial.Type.GeometryType, 
+           NHibernate.Spatial">
+    <param name="srid">4269</param>
+    <param name="subtype">GEOMETRY</param>
+  </typedef>
+  <class name="StatePart" 
+         table="StatePart"
+         mutable="false"
+         schema-action="none">
+    <id name="Id" column="ID">
+      <generator class="assigned" />
+    </id>
+    <property name="Name" column="NAME"/>
+    <property name="Area" column="AREA"/>
+    <property name="Perimeter" column="PERIMETER"/>
+    <property name="Geometry" type="Geometry" 
+              column="geom" />
+  </class>
+</hibernate-mapping>
+

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <query name="BookWithISBN">
+    <![CDATA[
+    from Book b where b.ISBN = :isbn
+    ]]>
+  </query>
+</hibernate-mapping>
+

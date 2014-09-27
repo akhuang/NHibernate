@@ -1,0 +1,10 @@
+Chapter 1 - Code present.
+Chapter 2 - Code present.
+Chapter 3 - Code present.
+Chapter 4 - Code present.
+Chapter 5 - Code present.
+For the first recipe of chapter 5, you will need NHibernate Profiler. A fully-functional 30 day trial is available from the NHProf.com website.
+Chapter 6 - Code present.
+Chapter 7 - Code present.
+Chapter 8 - Code present.
+

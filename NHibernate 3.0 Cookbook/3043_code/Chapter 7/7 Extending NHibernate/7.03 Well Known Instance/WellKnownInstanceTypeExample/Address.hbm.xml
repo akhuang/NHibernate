@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+    assembly="WKITExample"
+    namespace="WKITExample">
+  <typedef 
+    class="WKITExample.StateType, WKITExample" 
+    name="State"/>
+  <class name="Address">
+    <id name="Id">
+      <generator class="guid.comb" />
+    </id>
+    <property name="Line1" not-null="true" />
+    <property name="Line2" />
+    <property name="City" not-null="true" />
+    <property name="State" type="State" not-null="true" />
+    <property name ="Zip" not-null="true" />
+  </class>
+</hibernate-mapping>
+

@@ -1,0 +1,110 @@
+<html>
+<head>
+	<title>
+		SQL Spatial Query Visualizer
+	</title>
+</head>
+<style type="text/css">
+body { font-family: Verdana; font-size: 10pt; }
+</style>
+<body>
+
+<h1>SQL Spatial Query Visualizer</h1>
+for Microsoft SQL Server 2008
+
+
+<h2>Tips'n'tricks</h2>
+
+<h3>Colors</h3>
+<p>
+Control the output colors by creating FillColor and LineColor columns.
+</p>
+Examples:
+<pre>
+	SELECT *, 'Green' AS FillColor, 'Transparent' as LineColor FROM countries   <i>-- Green fill, no outline</i>
+	SELECT *, '#FF49A9CC' AS FillColor FROM countries    <i>-- Hex-value based fill color, Default outline (Black)</i>
+</pre>
+<p>
+If your color is integral, it will map the color to a rainbow-like scale using values from 0..16777216.<br/>
+If you color is floating point, it will map the color to a rainbow-like scale using values from 0..1.<br/>
+Values outside this range will be clipped.
+</p>
+Example:<br/>
+	<img src="Example2.jpg" /><br/>
+<p>
+	If the color cannot be parsed it will use default colors (Black for outline, White for fill).
+</p>
+
+
+<h3>Lines</h3>
+<p>
+	Control the thickness of lines/outlines by creating a LineThickness column. The value specifies the width in pixels.
+</p>
+Example:
+<pre>
+	SELECT *, 'Blue' as LineColor, 3 as LineThickness FROM Rivers
+</pre>
+
+<h3>Points</h3>
+<p>
+	Points are currently not supported for display, but you can use STBuffer() to make the points into buffer-polygons.
+</p>
+Examples:
+<pre>
+	SELECT geom.STBuffer(1), * FROM cities
+	SELECT geom.STBuffer(POPULATION), * FROM cities; <i>-- Large city => large circle</i>
+</pre>
+
+<h3>Lines in spherical geometry</h3>
+<p>If you use the geography type or a geometry type with an SRID between 4000 and 4999, lines will be shown as curves following a great circle. This doesn't mean that the lines are not straight - Just that projecting a sphere onto a flat screen distorts straight lines into curves (<a href="http://www.sharpgis.net/2008/01/12/StraightLinesOnASphere.aspx">see more here</a>). If they cross the dateline, they will also be cut in two (see below).<br/>
+Note that this curvature is not applied to polygons, so you might see some discrepancies on large polygons with few vertices.</p>
+<img src="linesplit.jpg" />
+<h3>Background Map</h3>
+<p>
+If you use a geometry type with an SRID between 4000 and 4999 (which is assumed to contain longitude/latitude coordinate pairs) or a Geography type, a rough world map is shown as background. You can disable this in View menu.
+You can also specify your own world map to use. The image has to be a map in the "<a href="http://en.wikipedia.org/wiki/Plate_carr%C3%A9e_projection">Plate Carrée</a>" projection containing the entire world. Width should be twice the size of the height.
+</p>
+<p>
+You can get a good satellite image as background from here: <a href="http://visibleearth.nasa.gov/view_rec.php?id=7105">http://visibleearth.nasa.gov/view_rec.php?id=7105</a> (I've had good success with the 5400x2700 JPEG image, but beware that larger images could cause problems).
+</p>
+
+<h3>Export result as ShapeFile</h3>
+<p>
+	This feature is very beta. Most datatypes are converted to strings and Z and M values are stripped.<br />
+</p>
+<p>
+	Note that if you a mix of points, multipoints, lines and polygons in your resultset, up to four sets of shapefiles will be created.
+</p>
+
+<h2>Examples</h2>
+<p>
+	Countries sharing border with Switzerland<br/>
+	<img src="Example1.jpg" />
+</p>
+<p>
+	Spatial join: Countries that contain the worlds 10 largest cities<br/>
+	<img src="Example3.jpg" />
+</p>
+<p>
+	Area within 100km of Denmark<br/>
+	<img src="Example4.jpg" />
+</p>
+<p>
+	Merging multiple queries to generate a combined map<br/>
+	<img src="Example5.jpg" />
+</p>
+<hr/>
+
+
+<p>Copyright (c) 2008 Morten Nielsen</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software, including without limitation the rights to use, copy, publish, distribute and/or sublicense, copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all copies of this Software or works derived from this Software.</p>
+
+<p>The above copyright notice and this permission notice shall be included in all copies of this Software. You may not modify, de-compile, disassemble, reverse engineer or translate the software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+</body>
+</html>

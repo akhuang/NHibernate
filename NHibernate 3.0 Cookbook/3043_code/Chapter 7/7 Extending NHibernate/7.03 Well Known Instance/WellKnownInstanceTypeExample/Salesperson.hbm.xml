@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+    assembly="WKITExample"
+    namespace="WKITExample">
+  <typedef 
+    class="WKITExample.RegionType, WKITExample" 
+    name="Region"/>
+  <class name="Salesperson">
+    <id name="Id">
+      <generator class="guid.comb" />
+    </id>
+    <property name="Name" not-null="true" />
+    <property name="Region" type="Region" not-null="true" />
+  </class>
+</hibernate-mapping>
+

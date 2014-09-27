@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class entity-name="ActorRole">
+    <id name="Id" type="Guid">
+      <generator class="guid.comb" />
+    </id>
+    <property name="Actor" type="string" not-null="true" />
+    <property name="Role" type="string" not-null="true" />
+  </class>
+</hibernate-mapping>
+

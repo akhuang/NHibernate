@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <sql-query name="GetBookByISBN_SQL">
+    <return alias="b" class="Eg.Core.Book, Eg.Core" />
+    <![CDATA[
+    SELECT 
+      b.Id AS [b.Id],
+      b.Name AS [b.Name],
+      b.Description AS [b.Description],
+      b.UnitPrice AS [b.UnitPrice],
+      b.Author AS [b.Author],
+      b.ISBN as [b.ISBN]
+    FROM Product b
+    WHERE b.ProductType = 'Eg.Core.Book'
+    AND b.ISBN = :isbn
+    ]]>
+  </sql-query>
+</hibernate-mapping>
+

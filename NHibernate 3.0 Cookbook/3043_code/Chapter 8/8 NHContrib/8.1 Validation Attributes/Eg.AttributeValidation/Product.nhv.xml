@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<nhv-mapping xmlns="urn:nhibernate-validator-1.0"
+             namespace="Eg.AttributeValidation"
+             assembly="Eg.AttributeValidation">
+  <class name="Product">
+    <property name="Name">
+      <not-null/>
+      <length min="1" max="255"/>
+    </property>
+    <property name="Description">
+      <notnull-notempty/>
+    </property>
+  </class>
+</nhv-mapping>

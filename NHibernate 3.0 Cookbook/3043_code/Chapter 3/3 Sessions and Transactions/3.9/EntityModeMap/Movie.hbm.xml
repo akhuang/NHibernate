@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <subclass entity-name="Movie" extends="Product" discriminator-value="Eg.Core.Movie">
+    <property name="Director" type="String" />
+    <list name="Actors" cascade="all-delete-orphan">
+      <key column="MovieId" />
+      <index column="ActorIndex" />
+      <one-to-many entity-name="ActorRole"/>
+    </list>
+  </subclass>
+</hibernate-mapping>
+
+
+

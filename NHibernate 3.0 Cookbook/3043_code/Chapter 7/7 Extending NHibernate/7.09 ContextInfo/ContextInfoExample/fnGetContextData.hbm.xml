@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <database-object>
+    <create>
+      CREATE FUNCTION dbo.fnGetContextData()
+      RETURNS varchar(127)
+      AS
+      BEGIN
+        declare @data varchar(127)
+        declare @length tinyint
+        declare @ctx varbinary(128)
+        select @ctx = CONTEXT_INFO()
+        select @length = convert(tinyint, 
+            substring(@ctx, 1, 1))
+        select @data = convert(varchar(127), 
+            substring(@ctx, 2, 1 + @length))
+        return @data
+      END
+    </create>
+    <drop>DROP FUNCTION dbo.fnGetContextData</drop>
+  </database-object>
+</hibernate-mapping>
+
